@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use App\Models\register;
 use App\Models\User;
+use App\Models\citys;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,9 @@ class logincontroller extends Controller
 
     public function registerview()
     {
-        return view('register');
+        $citys = Citys::all();
+        $data = compact('citys');
+        return view('register')->with($data);
     }
 
     public function register(Request $request)
@@ -47,8 +50,9 @@ class logincontroller extends Controller
     }
     public function loginview()
     {
-
-        return view('login');
+        $citys = Citys::all();
+        $data = compact('citys');
+        return view('login')->with($data);
     }
     public function login(request $request)
     {
