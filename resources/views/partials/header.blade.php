@@ -12,13 +12,36 @@
 
     <style>
         body {
-            padding-top: 56px;
-        }
+    /* padding-top: 56px; */
+    position: relative; /* Make the body a positioning context for the pseudo-element */
+    background-image: url('img/back.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 
-        .navbar {
-            background-color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+body::before {
+    content: ""; /* Create a pseudo-element for the background layer */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('img/back.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    filter: blur(2px);
+    z-index: -1; /* Move the pseudo-element behind the content */
+}
+
+.navbar {
+    background-color:transparent;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+    position: relative; /* Ensure the navbar stays above the pseudo-element */
+    z-index: 1; /* Bring the navbar above the pseudo-element */
+}
+
 
         .navbar-brand img {
             max-height: 40px;
@@ -106,30 +129,42 @@
         .custom-modal button:hover {
             background-color: #0056b3;
         }
+        #loc{
+            margin-right: 300px;
+            margin-left: 500px;
+        }
+        .bbb{
+            background-color: rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
 
 <body>
-    <nav class="navbar fixed-top navbar-expand-lg justify-content-center">
-        <ul class="nav nav-tabs" id="navId" role="tablist">
+    <nav class="navbar fixed-top navbar-expand-lg ">
+        <ul class="nav " id="navId" role="tablist">
             <li class="nav-item immg">
-                <a href="/" class="nav-link"><img src="img\logo.png" width="150px" alt="logo"></a>
+                <a href="/" class="nav-link"><img class="bbb p-2  rounded-3" src="img\logo.png" width="150px" alt="logo"></a>
             </li>
-            <li class="nav-item">
-                <div class="me-auto mx-2 my-3">
+            <li id="loc" class="nav-item ">
+                <div class="me-auto mx-2 mt-3">
                     <form action="" class="d-flex">
                         <input name="search" class="form-control sear me-2" style="width:550px" type="search"
                             placeholder="Search" aria-label="Search">
                     </form>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark fs-4" data-bs-toggle="modal" data-bs-target="#locationmodal">Location</a>
+            <li class="nav-item ">
+                <a class="nav-link text-warning rounded-2 my-3 fs-4 bbb" data-bs-toggle="modal" data-bs-target="#locationmodal">Location</a>
             </li>
-            <li class="nav-item ico">
+            <li class="nav-item ico ms-3 mt-2">
                 <i id="liveToastBtn" class="fa fa-user float-right mx-2 my-3"style="font-size:30px; cursor: pointer;"></i>
             </li>
-        </ul>
+            @if (Auth::check())
+            <li class="nav-item ico me-3 mt-4">
+                <h4>-{{ Auth::user()->name }}</h4>
+            </li>
+            @endif
+         </ul>
     </nav>
 
     <div class="modal fade" id="locationmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
