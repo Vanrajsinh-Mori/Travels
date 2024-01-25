@@ -127,8 +127,7 @@
                 <a class="nav-link text-dark fs-4" data-bs-toggle="modal" data-bs-target="#locationmodal">Location</a>
             </li>
             <li class="nav-item ico">
-                <i id="liveToastBtn" class="fa fa-user float-right mx-2 my-3"
-                    style="font-size:30px; cursor: pointer;"></i>
+                <i id="liveToastBtn" class="fa fa-user float-right mx-2 my-3"style="font-size:30px; cursor: pointer;"></i>
             </li>
         </ul>
     </nav>
@@ -197,10 +196,11 @@
                             <div class="bwc__sc-ttnkwg-4 Ettpg ">
                                 <ul class="bwc__sc-ttnkwg-6 khSHCa hidden row ">
                                     
-                                    
+                                    @foreach ($citys as $city)
                                     <li class="bwc__sc-ttnkwg-7 gtXMtL col-6">
-                                        <div class="bwc__sc-ttnkwg-8 fsJkBY"></div>
+                                        <a href="#" class="text-decoration-none text-dark">{{$city->citys_name}}</a>
                                     </li>
+                                    @endforeach
 
                                 </ul>                           
                                 </div>
@@ -220,11 +220,45 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
+
+<div class="toast-container position-fixed top-4 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <button type="button" class="btn-close float-right" data-bs-dismiss="toast" aria-label="Close"></button>
+        <div class="toast-header">
+            <h6><strong> @auth
+                        <strong> Welcome:{{ Auth::user()->name }} </strong>
+                    @else
+                        <div class="text-denger"> Guest </div>
+
+                    @endauth
+                </strong> <br>
+                <p class="mb-0">Manage cart, Orders and wishlist</p>
+            </h6>
+        </div>
+        @if (Auth::check())
+            <div class="toast-body">
+                <a href="{{ route('logout') }}" class="btn btn-outline-dark float-right">Logout</a>
+            </div>
+        @else
+            <div class="toast-body">
+                <a href="{{ route('login') }}" class="btn btn-outline-dark float-left">Login</a>
+                <a href="{{ route('register') }}" class="btn btn-outline-dark float-right">Register</a>
+            </div>
+        @endif
+    </div>
+</div>
+        
+        <script>
+            const toastTrigger = document.getElementById('liveToastBtn')
+            const toastLiveExample = document.getElementById('liveToast')
+            
+            if (toastTrigger) {
+            const toastBootstrap = new bootstrap.Toast(toastLiveExample)
+            toastTrigger.addEventListener('click', () => {
+                toastBootstrap.show()
+            })
+            }
+            </script>
 </body>
-
-
-
-
-
 
 </html>
