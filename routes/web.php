@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\logincontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/', function () {
+        return view('index');
+    });
+    Route::get('/register', [logincontroller::class, 'registerview'])->name('register');
+    Route::post('/register', [logincontroller::class, 'register'])->name('register');
+    Route::get('/login', [logincontroller::class, 'loginview'])->name('loginview');
+    Route::post('/login', [logincontroller::class, 'login'])->name('login');
+    
+    // Route::get('/search', [productcontroller::class, 'productview'])->name('search');
+    // Route::get('/', [productcontroller::class, 'productview'])->name('productview');
 });
