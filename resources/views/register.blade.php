@@ -1,6 +1,5 @@
 @include('partials.header')
 @extends('partials.footer')
-
 <div class="container d-flex align-items-center justify-content-center mt-4">
         <div class="card my-4 mx-5 shadow" style="width: 50rem; color: rgb(0, 110, 255);">
        
