@@ -12,35 +12,34 @@
 
     <style>
         body {
-    /* padding-top: 56px; */
-    position: relative; /* Make the body a positioning context for the pseudo-element */
-    background-image: url('img/back.avif');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
+            position: relative;
+            background-image: url('/img/back.avif');
+            background-color: rgba(0, 0, 0, 0.5);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
 
-body::before {
-    content: ""; /* Create a pseudo-element for the background layer */
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('img/back.avif');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    filter: blur(2px);
-    z-index: -1; /* Move the pseudo-element behind the content */
-}
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/img/back.avif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            filter: blur(2px);
+            z-index: -1;
+        }
 
-.navbar {
-    background-color:transparent;
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-    position: relative; /* Ensure the navbar stays above the pseudo-element */
-    z-index: 1; /* Bring the navbar above the pseudo-element */
-}
+        .navbar {
+            background-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
 
 
         .navbar-brand img {
@@ -82,9 +81,7 @@ body::before {
         }
 
         .custom-modal {
-            /* width: 100%; Adjust this value as needed */
             width: 1300px;
-            /* Add a max-width if necessary */
             margin-top: 355px;
             background-color: #ffffff;
             border-radius: 10px;
@@ -129,11 +126,13 @@ body::before {
         .custom-modal button:hover {
             background-color: #0056b3;
         }
-        #loc{
+
+        #loc {
             margin-right: 300px;
             margin-left: 500px;
         }
-        .bbb{
+
+        .bbb {
             background-color: rgba(0, 0, 0, 0.5);
         }
     </style>
@@ -143,28 +142,31 @@ body::before {
     <nav class="navbar fixed-top navbar-expand-lg ">
         <ul class="nav " id="navId" role="tablist">
             <li class="nav-item immg">
-                <a href="/" class="nav-link"><img class="bbb p-2  rounded-3" src="img\logo.png" width="150px" alt="logo"></a>
+                <a href="/" class="nav-link"><img class="bbb p-2  rounded-3" src="/img/logo.png" width="150px"
+                        alt="logo"></a>
             </li>
             <li id="loc" class="nav-item ">
                 <div class="me-auto mx-2 mt-3">
                     <form action="" class="d-flex">
                         <input name="search" class="form-control sear me-2" style="width:550px" type="search"
-                            placeholder="Search" aria-label="Search">
+                            placeholder="Search" aria-label="-">
                     </form>
                 </div>
             </li>
             <li class="nav-item ">
-                <a class="nav-link text-warning rounded-2 my-3 fs-4 bbb" data-bs-toggle="modal" data-bs-target="#locationmodal">Location</a>
+                <a class="nav-link text-warning rounded-2 my-3 fs-4 bbb" data-bs-toggle="modal"
+                    data-bs-target="#locationmodal">Location</a>
             </li>
             <li class="nav-item ico ms-3 mt-2">
-                <i id="liveToastBtn" class="fa fa-user float-right mx-2 my-3"style="font-size:30px; cursor: pointer;"></i>
+                <i id="liveToastBtn"
+                    class="fa fa-user float-right mx-2 my-3"style="font-size:30px; cursor: pointer;"></i>
             </li>
             @if (Auth::check())
-            <li class="nav-item ico me-3 mt-4">
-                <h4>-{{ Auth::user()->name }}</h4>
-            </li>
+                <li class="nav-item ico me-3 mt-4">
+                    <h4>- {{ Auth::user()->name }}</h4>
+                </li>
             @endif
-         </ul>
+        </ul>
     </nav>
 
     <div class="modal fade" id="locationmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -174,7 +176,6 @@ body::before {
 
                 <div class="modal-body">
                     <div class="mt-3 row">
-                        <!-- Wrap each pair of image and text in a col -->
                         <div class="col mx-2">
                             <img src="//in.bmscdn.com/m6/images/common-modules/regions/mumbai.png" alt="MUMBAI"
                                 class="img-fluid">
@@ -230,19 +231,20 @@ body::before {
                         <div class="my-3 col d-flex justify-content-center align-items-center">
                             <div class="bwc__sc-ttnkwg-4 Ettpg ">
                                 <ul class="bwc__sc-ttnkwg-6 khSHCa hidden row ">
-                                    
+
                                     @foreach ($citys as $city)
-                                    <li class="bwc__sc-ttnkwg-7 gtXMtL col-6">
-                                        <a href="#" class="text-decoration-none text-dark">{{$city->citys_name}}</a>
-                                    </li>
+                                        <li class="bwc__sc-ttnkwg-7 gtXMtL col-6">
+                                            <a href="{{ route('hotels', ['id' => $city->city_id]) }}"
+                                                class="text-decoration-none text-dark">{{ $city->citys_name }}</a>
+                                        </li>
                                     @endforeach
 
-                                </ul>                           
-                                </div>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
-                    
+
                 </div>
             </div>
         </div>
@@ -256,44 +258,45 @@ body::before {
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
 
-<div class="toast-container position-fixed top-4 end-0 p-3">
-    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <button type="button" class="btn-close float-right" data-bs-dismiss="toast" aria-label="Close"></button>
-        <div class="toast-header">
-            <h6><strong> @auth
-                        <strong> Welcome:{{ Auth::user()->name }} </strong>
-                    @else
-                        <div class="text-denger"> Guest </div>
+    <div class="toast-container position-fixed top-4 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <button type="button" class="btn-close float-right" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+            <div class="toast-header">
+                <h6><strong> @auth
+                            <strong> Welcome:{{ Auth::user()->name }} </strong>
+                        @else
+                            <div class="text-denger"> Guest </div>
 
-                    @endauth
-                </strong> <br>
-                <p class="mb-0">Manage cart, Orders and wishlist</p>
-            </h6>
+                        @endauth
+                    </strong> <br>
+                    <p class="mb-0">Manage cart, Orders and wishlist</p>
+                </h6>
+            </div>
+            @if (Auth::check())
+                <div class="toast-body">
+                    <a href="{{ route('logout') }}" class="btn btn-outline-dark float-right">Logout</a>
+                </div>
+            @else
+                <div class="toast-body">
+                    <a href="{{ route('login') }}" class="btn btn-outline-dark float-left">Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-outline-dark float-right">Register</a>
+                </div>
+            @endif
         </div>
-        @if (Auth::check())
-            <div class="toast-body">
-                <a href="{{ route('logout') }}" class="btn btn-outline-dark float-right">Logout</a>
-            </div>
-        @else
-            <div class="toast-body">
-                <a href="{{ route('login') }}" class="btn btn-outline-dark float-left">Login</a>
-                <a href="{{ route('register') }}" class="btn btn-outline-dark float-right">Register</a>
-            </div>
-        @endif
     </div>
-</div>
-        
-        <script>
-            const toastTrigger = document.getElementById('liveToastBtn')
-            const toastLiveExample = document.getElementById('liveToast')
-            
-            if (toastTrigger) {
+
+    <script>
+        const toastTrigger = document.getElementById('liveToastBtn')
+        const toastLiveExample = document.getElementById('liveToast')
+
+        if (toastTrigger) {
             const toastBootstrap = new bootstrap.Toast(toastLiveExample)
             toastTrigger.addEventListener('click', () => {
                 toastBootstrap.show()
             })
-            }
-            </script>
+        }
+    </script>
 </body>
 
 </html>

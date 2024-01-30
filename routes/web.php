@@ -29,3 +29,4 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::get('/', [Projectcontroller::class, 'view']);
+Route::get('/hotels/{id}', [Projectcontroller::class, 'hotels'])->name("hotels");
