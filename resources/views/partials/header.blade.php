@@ -240,7 +240,7 @@
         });
         $(document).ready(function () {
     
-            $("#Hyderabad").click(function () {
+            $("#Bengaluru").click(function () {
     
                 window.location.href = "/hotels/5";
             });

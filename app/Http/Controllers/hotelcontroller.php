@@ -19,7 +19,8 @@ class hotelcontroller extends Controller
     
         public function book($id){
                 $citys = citys::all();
-                $data = compact('citys');
+                $hotels = hotels::where('hotel_id', $id)->first();
+                $data = compact('citys', 'hotels');
                 return view('book')->with($data);
         }
 }

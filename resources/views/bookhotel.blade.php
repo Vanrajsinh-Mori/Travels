@@ -35,7 +35,7 @@
     <div class="col-5 container-fluid">
         <div class="card">
 
-            <img src="/img/{{ $hotels->hotels_image_path}}" class="border card-img-top" alt="...">
+            <img src="/img/{{ $hotels->hotels_image_path}}" height="500px" class="border card-img-top" alt="...">
 
         </div>
     </div>
