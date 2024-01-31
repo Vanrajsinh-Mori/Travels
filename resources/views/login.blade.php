@@ -1,6 +1,31 @@
 @include("partials.header")
 @extends("partials.footer")
+<style>
+     body {
+        position: relative;
+        background-image: url('/img/back.avif'); 
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        font-family: 'Verdana', sans-serif; 
+    }
 
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('/img/back.avif'); 
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        filter: blur(4px); 
+        z-index: -1;
+    }
+</style>
 @if (session()->has('register'))
     <div class="alert alert-success alert-dismissible fade show my-2" role="alert" id="registerSuccessAlert">
         <strong>Success</strong> Register Successfully please Login
