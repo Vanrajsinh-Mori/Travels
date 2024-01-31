@@ -21,6 +21,8 @@ class Projectcontroller extends Controller
     $city = Citys::find($id);
     $hotels = Hotels::where('city_id', $id)->get();
     $data = compact('city', 'citys', 'hotels');
+
+    
     return view('hotels')->with($data);
 }
 

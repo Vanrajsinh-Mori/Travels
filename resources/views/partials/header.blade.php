@@ -11,29 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
-        body {
-            position: relative;
-            background-image: url('/img/back.avif');
-            background-color: rgba(0, 0, 0, 0.5);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
 
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('/img/back.avif');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            filter: blur(2px);
-            z-index: -1;
-        }
 
         .navbar {
             background-color: transparent;
@@ -176,55 +154,40 @@
 
                 <div class="modal-body">
                     <div class="mt-3 row">
-                        <div class="col mx-2">
+                        <div id="Mumbai" class="col mx-2">
                             <img src="//in.bmscdn.com/m6/images/common-modules/regions/mumbai.png" alt="MUMBAI"
                                 class="img-fluid">
                             <span>Mumbai</span>
                         </div>
-                        <div class="col mx-2">
+                        <div id="Delhi" class="col mx-2">
                             <img src="//in.bmscdn.com/m6/images/common-modules/regions/ncr.png" alt="NCR"
-                                class="img-fluid">
-                            <span>Delhi</span>
+                                class="img-fluid"><br>
+                            <span class="ms-3">Delhi</span>
                         </div>
-                        <div class="col mx-2">
+                        <div id="Bengaluru" class="col mx-2">
                             <img src="//in.bmscdn.com/m6/images/common-modules/regions/bang.png" alt="BANG"
                                 class="img-fluid">
                             <span>Bengaluru</span>
                         </div>
-                        <div class="col mx-2">
+                        <div id="Hyderabad" class="col mx-2">
                             <img src="//in.bmscdn.com/m6/images/common-modules/regions/hyd.png" alt="HYD"
                                 class="img-fluid">
                             <span>Hyderabad</span>
                         </div>
-                        <div class="col mx-2">
+                        <div id="Ahmedabad" class="col mx-2">
                             <img src="//in.bmscdn.com/m6/images/common-modules/regions/ahd.png" alt="AHD"
                                 class="img-fluid">
                             <span>Ahmedabad</span>
                         </div>
-                        <div class="col mx-2">
-                            <img src="//in.bmscdn.com/m6/images/common-modules/regions/chd.png" alt="CHD"
-                                class="img-fluid">
-                            <span>Chandigarh</span>
-                        </div>
-                        <div class="col mx-2">
+                        <div id="Chennai" class="col mx-2">
                             <img src="//in.bmscdn.com/m6/images/common-modules/regions/chen.png" alt="CHEN"
                                 class="img-fluid">
                             <span>Chennai</span>
                         </div>
-                        <div class="col mx-2">
-                            <img src="//in.bmscdn.com/m6/images/common-modules/regions/pune.png" alt="PUNE"
-                                class="img-fluid">
-                            <span>Pune</span>
-                        </div>
-                        <div class="col mx-2">
+                        <div id="Kolkata" class="col mx-2">
                             <img src="//in.bmscdn.com/m6/images/common-modules/regions/kolk.png" alt="KOLK"
-                                class="img-fluid">
-                            <span>Kolkata</span>
-                        </div>
-                        <div class="col mx-2">
-                            <img src="//in.bmscdn.com/m6/images/common-modules/regions/koch.png" alt="KOCH"
-                                class="img-fluid">
-                            <span>Kochi</span>
+                                class="img-fluid"><br>
+                            <span class="ms-3">Kolkata</span>
                         </div>
                     </div>
                     <div class="container my-3 col">
@@ -233,11 +196,17 @@
                                 <ul class="bwc__sc-ttnkwg-6 khSHCa hidden row ">
 
                                     @foreach ($citys as $city)
-                                        <li class="bwc__sc-ttnkwg-7 gtXMtL col-6">
+                                    <li class="bwc__sc-ttnkwg-7 gtXMtL col-6">
+                                        @if(Auth::check())
                                             <a href="{{ route('hotels', ['id' => $city->city_id]) }}"
-                                                class="text-decoration-none text-dark">{{ $city->citys_name }}</a>
-                                        </li>
-                                    @endforeach
+                                               class="text-decoration-none text-dark">{{ $city->citys_name }}</a>
+                                        @else
+                                            <a href="{{ route('login') }}"
+                                               class="text-decoration-none text-dark">{{ $city->citys_name }}</a>
+                                        @endif
+                                    </li>
+                                @endforeach
+                                
 
                                 </ul>
                             </div>
@@ -249,7 +218,63 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+    @if (Auth::check())
+        
+
+    <script>
+        $(document).ready(function () {
+    
+            $("#Mumbai").click(function () {
+    
+                window.location.href = "/hotels/3";
+            });
+        });
+        $(document).ready(function () {
+    
+            $("#Delhi").click(function () {
+    
+                window.location.href = "/hotels/8";
+            });
+        });
+        $(document).ready(function () {
+    
+            $("#Hyderabad").click(function () {
+    
+                window.location.href = "/hotels/5";
+            });
+        });
+        $(document).ready(function () {
+    
+            $("#Hyderabad").click(function () {
+    
+                window.location.href = "/hotels/6";
+            });
+        });
+        $(document).ready(function () {
+    
+            $("#Ahmedabad").click(function () {
+    
+                window.location.href = "/hotels/20";
+            });
+        });
+        $(document).ready(function () {
+    
+            $("#Chennai").click(function () {
+    
+                window.location.href = "/hotels/18";
+            });
+        });
+        $(document).ready(function () {
+    
+            $("#Kolkata").click(function () {
+    
+                window.location.href = "/hotels/4";
+            });
+        });
+    </script>
+        @endif
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>

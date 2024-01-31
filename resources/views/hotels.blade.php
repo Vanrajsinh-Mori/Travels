@@ -1,64 +1,108 @@
-@include("partials.header")
-@extends("partials.footer")
-<style>
-    .img1 {
+@include('partials.header')
+@extends('partials.footer')
 
-        border-radius: 50%;
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
+<style>
+    body {
+        position: relative;
+            background-image: url('/img/back.avif');
+            background-color: rgba(0, 0, 0, 0.5);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
     }
 
-    #carouselExampleIndicators {
-        margin: 0 auto;
-        width: 70%;
+    .container {
+        margin-top: 30px;
     }
 
     .card {
-
-        transition: transform 0.3s;
-        height: 95%;
+        border: 1px solid #ccc;
+        transition: transform 0.3s ease;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 30px;
+        height: 100%; /* Set a fixed height for the card */
     }
 
     .card:hover {
-        transform: scale(1.05);
+        transform: scale(1.1);
     }
 
     .card img {
-        height: 50%;
+        height: 250px; /* Adjust the image height */
         object-fit: cover;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .card-body {
+        height: 230px; /* Set a fixed height for the card body */
+        padding: 20px;
     }
 
     .card-title {
-        font-size: 1.2rem;
+        font-size: 1.5rem; /* Adjust the font size */
         font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
     .card-text {
-        color: #555;
+        color: #666;
+        margin-bottom: 15px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .price {
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: #e44d26;
+    }
+
+    .btn-dark {
+        background-color: #2c3e50;
+        color: #fff;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-dark:hover {
+        background-color: #1a252f;
     }
 </style>
 
-<div class="container show mb-5">
-    <div class="container my-4 mt-5" id="ques">
-        <div class="row my-4" id="productContainer">
+<div class="container">
+    <div class="row">
+        @foreach ($hotels as $hotel)
+            <div class="col-md-4 my-4">
+                <div class="card">
+                    <img src="/img/{{ $hotel->hotels_image_path }}" class="img-fluid rounded-start" alt="Hotel Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $hotel->hotels_name }}</h5>
+                        <p class="card-text">{{ $hotel->hotels_description }}</p>
 
-            @foreach ($hotels as $hotel)
-    <div class="col-3">
-        <div class="card">
-            <img src="/img/{{ $hotel->hotels_image_path }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{ $hotel->hotels_name }}</h5>
-                <p class="card-text">{{ $hotel->hotels_description }}</p>
-                <h3>₹{{ $hotel->hotels_price }}</h3>
-                {{-- <a href="{{ route('add', ['id' => $hotel->id]) }}" class="btn btn-dark">Add to cart</a> --}}
+                        {{-- Price and Star Rating --}}
+                        <p class="price text-danger">
+                            @for ($i = 1; $i <= 5; $i++)
+                            @if ($i <= $hotel->hotels_star)
+                            <i class="fa fa-star text-warning"></i>
+                            @else
+                            <i class="fa fa-star text-muted"></i>
+                            @endif
+                            @endfor
+                            <p class="price text-danger">₹{{ $hotel->hotels_price }}</p>
+                        </p>
+
+                        <a href="{{ route('add', ['id' => $hotel->hotel_id]) }}" class="btn btn-dark">View hotel</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-@endforeach
-
-
-        </div>
+        @endforeach
     </div>
 </div>
 

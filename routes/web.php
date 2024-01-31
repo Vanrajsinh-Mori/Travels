@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\logincontroller;
 use App\Http\Controllers\Projectcontroller;
+use App\Http\Controllers\hotelcontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,5 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::get('/', [Projectcontroller::class, 'view']);
 Route::get('/hotels/{id}', [Projectcontroller::class, 'hotels'])->name("hotels");
+Route::get('/add/{id}', [hotelcontroller::class, 'addview'])->name('add');
+Route::post('/book/{id}', [hotelcontroller::class, 'book'])->name('book');
