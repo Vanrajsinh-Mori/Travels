@@ -11,14 +11,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
-
-
         .navbar {
             background-color: transparent;
             position: relative;
             z-index: 1;
         }
-
 
         .navbar-brand img {
             max-height: 40px;
@@ -196,24 +193,20 @@
                                 <ul class="bwc__sc-ttnkwg-6 khSHCa hidden row ">
 
                                     @foreach ($citys as $city)
-                                    <li class="bwc__sc-ttnkwg-7 gtXMtL col-6">
-                                        @if(Auth::check())
-                                            <a href="{{ route('hotels', ['id' => $city->city_id]) }}"
-                                               class="text-decoration-none text-dark">{{ $city->citys_name }}</a>
-                                        @else
-                                            <a href="{{ route('login') }}"
-                                               class="text-decoration-none text-dark">{{ $city->citys_name }}</a>
-                                        @endif
-                                    </li>
-                                @endforeach
-                                
-
+                                        <li class="bwc__sc-ttnkwg-7 gtXMtL col-6">
+                                            @if (Auth::check())
+                                                <a href="{{ route('hotels', ['id' => $city->city_id]) }}"
+                                                    class="text-decoration-none text-dark">{{ $city->citys_name }}</a>
+                                            @else
+                                                <a href="{{ route('login') }}"
+                                                    class="text-decoration-none text-dark">{{ $city->citys_name }}</a>
+                                            @endif
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -221,60 +214,58 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     @if (Auth::check())
-        
+        <script>
+            $(document).ready(function() {
 
-    <script>
-        $(document).ready(function () {
-    
-            $("#Mumbai").click(function () {
-    
-                window.location.href = "/hotels/3";
+                $("#Mumbai").click(function() {
+
+                    window.location.href = "/hotels/3";
+                });
             });
-        });
-        $(document).ready(function () {
-    
-            $("#Delhi").click(function () {
-    
-                window.location.href = "/hotels/8";
+            $(document).ready(function() {
+
+                $("#Delhi").click(function() {
+
+                    window.location.href = "/hotels/8";
+                });
             });
-        });
-        $(document).ready(function () {
-    
-            $("#Bengaluru").click(function () {
-    
-                window.location.href = "/hotels/5";
+            $(document).ready(function() {
+
+                $("#Bengaluru").click(function() {
+
+                    window.location.href = "/hotels/5";
+                });
             });
-        });
-        $(document).ready(function () {
-    
-            $("#Hyderabad").click(function () {
-    
-                window.location.href = "/hotels/6";
+            $(document).ready(function() {
+
+                $("#Hyderabad").click(function() {
+
+                    window.location.href = "/hotels/6";
+                });
             });
-        });
-        $(document).ready(function () {
-    
-            $("#Ahmedabad").click(function () {
-    
-                window.location.href = "/hotels/20";
+            $(document).ready(function() {
+
+                $("#Ahmedabad").click(function() {
+
+                    window.location.href = "/hotels/20";
+                });
             });
-        });
-        $(document).ready(function () {
-    
-            $("#Chennai").click(function () {
-    
-                window.location.href = "/hotels/18";
+            $(document).ready(function() {
+
+                $("#Chennai").click(function() {
+
+                    window.location.href = "/hotels/18";
+                });
             });
-        });
-        $(document).ready(function () {
-    
-            $("#Kolkata").click(function () {
-    
-                window.location.href = "/hotels/4";
+            $(document).ready(function() {
+
+                $("#Kolkata").click(function() {
+
+                    window.location.href = "/hotels/4";
+                });
             });
-        });
-    </script>
-        @endif
+        </script>
+    @endif
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
