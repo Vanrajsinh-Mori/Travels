@@ -23,7 +23,7 @@
         border-radius: 12px;
         overflow: hidden;
         margin-bottom: 30px;
-        height: 100%; /* Set a fixed height for the card */
+        height: 100%; 
     }
 
     .card:hover {
@@ -31,18 +31,18 @@
     }
 
     .card img {
-        height: 250px; /* Adjust the image height */
+        height: 250px; 
         object-fit: cover;
         border-radius: 12px 12px 0 0;
     }
 
     .card-body {
-        height: 230px; /* Set a fixed height for the card body */
+        height: 230px; 
         padding: 20px;
     }
 
     .card-title {
-        font-size: 1.5rem; /* Adjust the font size */
+        font-size: 1.5rem; 
         font-weight: bold;
         margin-bottom: 10px;
         color: #333;
@@ -86,7 +86,6 @@
                         <h5 class="card-title">{{ $hotel->hotels_name }}</h5>
                         <p class="card-text">{{ $hotel->hotels_description }}</p>
 
-                        {{-- Price and Star Rating --}}
                         <p class="price text-danger">
                             @for ($i = 1; $i <= 5; $i++)
                             @if ($i <= $hotel->hotels_star)
