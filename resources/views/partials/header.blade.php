@@ -9,7 +9,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+    <link rel="icon" type="image/x-icon" href="/img/logo.png">
     <style>
         .navbar {
             background-color: transparent;
@@ -143,7 +143,7 @@
             @endif
         </ul>
     </nav>
-
+    {{-- <button onclick="window.print()">Print this page</button> --}}
     <div class="modal fade" id="locationmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content custom-modal">

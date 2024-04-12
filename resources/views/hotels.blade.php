@@ -4,11 +4,11 @@
 <style>
     body {
         position: relative;
-            background-image: url('/img/back.avif');
-            background-color: rgba(0, 0, 0, 0.5);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+        background-image: url('/img/back.avif');
+        background-color: rgba(0, 0, 0, 0.5);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
 
     .container {
@@ -23,7 +23,7 @@
         border-radius: 12px;
         overflow: hidden;
         margin-bottom: 30px;
-        height: 100%; 
+        height: 100%;
     }
 
     .card:hover {
@@ -31,18 +31,18 @@
     }
 
     .card img {
-        height: 250px; 
+        height: 250px;
         object-fit: cover;
         border-radius: 12px 12px 0 0;
     }
 
     .card-body {
-        height: 230px; 
+        height: 250px;
         padding: 20px;
     }
 
     .card-title {
-        font-size: 1.5rem; 
+        font-size: 1.5rem;
         font-weight: bold;
         margin-bottom: 10px;
         color: #333;
@@ -88,13 +88,17 @@
 
                         <p class="price text-danger">
                             @for ($i = 1; $i <= 5; $i++)
-                            @if ($i <= $hotel->hotels_star)
-                            <i class="fa fa-star text-warning"></i>
-                            @else
-                            <i class="fa fa-star text-muted"></i>
-                            @endif
+                                @if ($i <= $hotel->hotels_star)
+                                    <i class="fa fa-star text-warning"></i>
+                                @else
+                                    <i class="fa fa-star text-muted"></i>
+                                @endif
                             @endfor
-                            <p class="price text-danger">₹{{ $hotel->hotels_price }}</p>
+                            <?php
+                            $discount = $hotel->hotels_price + 1200;
+                            ?>
+                        <p class="m-0 ling-trough" id="taxAmount"><s>₹{{ number_format($discount) }}</s></p>
+                        <p class="price text-danger">₹{{ $hotel->hotels_price }}</p>
                         </p>
 
                         <a href="{{ route('add', ['id' => $hotel->hotel_id]) }}" class="btn btn-dark">View hotel</a>
@@ -104,5 +108,3 @@
         @endforeach
     </div>
 </div>
-
-
