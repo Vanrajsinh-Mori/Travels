@@ -4,7 +4,8 @@
 <style>
     body {
         position: relative;
-        background-color: white;
+        background-color: rgb(255, 255, 255);
+        height: 155vh;
         margin: 0;
         padding: 0;
     }
@@ -28,7 +29,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.4);
+        background: rgba(0, 0, 0, 0.2);
     }
 
     footer {
@@ -57,8 +58,8 @@
         margin-right: 5px;
     }
 
-    h4 {
-        margin-left: 30px;
+    h5 {
+        margin-left: 10px;
     }
 </style>
 
@@ -87,12 +88,82 @@
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         max-width: 600px;
-        position: fixed;
-        top: 350px;
+        position: absolute;
+        top: 400px;
         left: 1200px;
         right: 0;
-        bottom: 90px;
 
+    }
+
+    .container3 {
+        background-color: white;
+        padding: 20px;
+        margin-top: 12px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        position: absolute;
+        top: 800px;
+        left: 50px;
+        right: 0;
+
+    }
+
+    .container4 {
+    background-color: white;
+    padding: 20px;
+    margin-top: 12px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    position: absolute;
+    top: 1000px;
+    left: 1200px;
+    right: 0;
+   
+}
+
+    .top{
+        display: flex;
+    }
+
+    .ak {
+    width: 330px; /* Adjust the width as needed */
+}
+
+.p {
+    overflow: hidden;
+    word-wrap: break-word;
+    max-width: 100%; /* Ensure the text doesn't overflow its container */
+}
+
+    .bbtn{
+        position: absolute;
+        right :15px;
+    }
+
+    .media {
+        display: flex;
+    }
+
+    .media-body {
+        display: flex;
+        overflow: hidden;
+    word-wrap: break-word;
+        width: 330px;
+    }
+
+    .media-footer{
+        position: absolute;
+        right: 10px;
+    }
+
+    .p {
+        margin-left: 35px;
+    }
+
+    .text-dark {
+        text-decoration: none;
     }
 
     .hotel {
@@ -118,9 +189,9 @@
     }
 
     .price {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: bold;
-        margin-top: 10px;
+        margin-top: 5px;
     }
 
     .card-text {
@@ -207,6 +278,10 @@
                     <i class="fa fa-star text-muted"></i>
                 @endif
             @endfor
+            <?php
+            $discount = $hotels->hotels_price + 1200;
+            ?>
+            <p class="m-0 ling-trough" id="taxAmount"><s>₹{{ number_format($discount) }}</s></p>
             <p class="price text-success">₹{{ $hotels->hotels_price }}</p>
             <p class="card-text">{{ $hotels->hotels_description }}</p>
             <form action="{{ route('book', $hotels->hotel_id) }}" method="POST" class="">
@@ -225,5 +300,108 @@
                         are not allowed.</span></li>
             </ul>
         </div>
+    </div>
+</div>
+<div class="container3">
+    <h1 class="py-2">Give Your Review</h1>
+    <form action="{{ route('save.thread', ['id' => $hotels->hotel_id]) }}" method="post">
+        @csrf
+        <div class="form-group">
+            <label for="exampleInputEmail1"> Title</label>
+            <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">Keep your title as short and crisp as
+                possible</small>
+        </div>
+        <input type="hidden" name="sno" value="">
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Elaborate Your Concern</label>
+            <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-warning mt-2">Submit</button>
+    </form>
+</div>
+
+<div class="container4 " id="ques">
+    <div class="top">
+    <h1 class="py-2">Browse Reviews</h1>
+    <button type="button" class="btn btn-warning bbtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        View All
+      </button>
+</div>
+    @if ($threads->isEmpty())
+        <div class="jumbotron jumbotron-fluid mb-0">
+            <div class="container">
+                <p class="display-4">No Reviews Found</p>
+                <p class="lead">Be the first person to Give a Review.</p>
+            </div>
+        </div>
+    @else
+        @foreach ($threads->take(2) as $thread)
+            <div class="media my-3">
+                <div class="dbs">
+                    <div class="media-body">
+                        <img src="/img/userdefult.png" width="54px" class="mr-3" alt="User Avatar">
+                        <h5 class="mt-0"><a class="text-dark" >{{ $thread->thread_title }}</a></h5>
+                    </div>
+                    <div class="ak">
+                    <p class="p">{{ $thread->thread_desc }}</p>
+                </div>
+                </div>
+                <div class="media-footer font-weight-bold my-0">
+                    <div class="text-muted">Asked by:</div>
+                    <div>{{ $thread->user->email }}</div>
+                    <div class="text-muted">at:</div>
+                    <div>{{ $thread->created_at->format('d M Y') }}</div>
+                </div>
+            </div>
+        @endforeach
+    @endif
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+            @if ($threads->isEmpty())
+            <h1 class="modal-title fs-5" id="exampleModalLabel">No Reviews Found</h1>
+            @else
+            <h1 class="modal-title fs-5" id="exampleModalLabel">All Reviews</h1>
+          @endif
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            @if ($threads->isEmpty())
+            <div class="jumbotron jumbotron-fluid mb-0">
+                <div class="container">
+                    <p class="display-4">No Reviews Found</p>
+                    <p class="lead">Be the first person to Give a Review.</p>
+                </div>
+            </div>
+        @else
+            @foreach ($threads as $thread)
+            <div class="media my-3">
+                <div class="dbs">
+                    <div class="media-body">
+                        <img src="/img/userdefult.png" width="35px" class="mr-3" alt="User Avatar">
+                        <h5 class="mt-0"><a class="text-dark" >{{ $thread->thread_title }}</a></h5>
+                    </div>
+                    <div class="ak">
+                    <p class="p">{{ $thread->thread_desc }}</p> 
+                </div>
+                </div>
+                <div class="media-footer font-weight-bold my-0">
+                    <div class="text-muted">Asked by:</div>
+                    <div>{{ $thread->user->email }}</div>
+                    <div class="text-muted">at:</div>
+                    <div>{{ $thread->created_at->format('d M Y') }}</div>
+                </div>
+            </div>
+        @endforeach
+        @endif
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
 </div>

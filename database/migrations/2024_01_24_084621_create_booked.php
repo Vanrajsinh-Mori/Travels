@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('booked', function (Blueprint $table) {
             $table->id(); // Change to use Laravel's id() method
-            $table->integer('quantity');
+            $table->string('name');
             $table->integer('price');
             $table->string('hotel_image_path'); // Change column name to 'hotel_image_path' for consistency
+            $table->date('checkin_date'); // Change column name to 'hotel_image_path' for consistency
+            $table->date('checkout_date'); // Change column name to 'hotel_image_path' for consistency
             $table->unsignedBigInteger('user_id'); // Change column name to 'user_id' for consistency
             $table->string('status');
             $table->timestamps();
