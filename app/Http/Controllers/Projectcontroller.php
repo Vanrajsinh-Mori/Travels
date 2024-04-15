@@ -18,14 +18,21 @@ class Projectcontroller extends Controller
         return view('index')->with($data);
     }
 
- public function hotels($id){
-    $citys = Citys::all();
-    $city = Citys::find($id);
-    $hotels = Hotels::where('city_id', $id)->get();
-    $data = compact('city', 'citys', 'hotels');
-
+    public function hotels($id, Request $request){
+        $citys = Citys::all();
+        $city = Citys::find($id);
     
-    return view('hotels')->with($data);
-}
+        $search = $request->input('search'); 
+        $hotels = Hotels::where('city_id', $id)
+                        ->when($search, function($query) use ($search) {
+                            $query->where('hotels_name', 'like', '%'.$search.'%');
+                        })
+                        ->get();
+    
+        $data = compact('city', 'citys', 'hotels');
+    
+        return view('hotels')->with($data);
+    }
+    
 
 }

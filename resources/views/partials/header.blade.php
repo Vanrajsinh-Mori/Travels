@@ -120,14 +120,18 @@
                 <a href="/" class="nav-link"><img class="bbb p-2  rounded-3" src="/img/logo.png" width="150px"
                         alt="logo"></a>
             </li>
-            <li id="loc" class="nav-item ">
+            <li id="loc" class="nav-item">
                 <div class="me-auto mx-2 mt-3">
-                    <form action="" class="d-flex">
-                        <input name="search" class="form-control sear me-2" style="width:550px" type="search"
-                            placeholder="Search" aria-label="-">
+                    <form action="" class="d-flex position-relative">
+                        <input name="search" class="form-control sear me-2" style="width:550px" type="search" placeholder="Search" aria-label="-">
+                        <button class="btn position-absolute" type="submit" style="top: 50%; right: 30px; transform: translateY(-50%);">
+                            <i class="bi bi-search"></i> <!-- Assuming you're using Bootstrap Icons -->
+                        </button>
                     </form>
                 </div>
             </li>
+            
+            
             <li class="nav-item ">
                 <a class="nav-link text-warning rounded-2 my-3 fs-4 bbb" data-bs-toggle="modal"
                     data-bs-target="#locationmodal">Location</a>
