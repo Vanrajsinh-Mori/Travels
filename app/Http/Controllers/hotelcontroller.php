@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\citys;
+use App\Models\User;
 use App\Models\hotels;
 use App\Models\Thread;
 use App\Models\book;
@@ -92,13 +93,21 @@ class hotelcontroller extends Controller
                 $booking->save();
                 
                 // Flash the success message
-                $alert = ['success' => 'You booked the hotel'];
+                $alert = ['success' => 'Your hotel booked'];
                 $data = compact('alert', 'citys');
                 // Storing the alert message in session flash
                 $request->session()->flash('alert', $alert);
                 
                 // Redirect the user to the index page or any other appropriate page
                 return view('index')->with($data);
+            }
+
+            public function list(){
+                $citys = citys::all();
+                $user = User::all();
+                $booking = Book::all();
+                $data = compact('citys', 'booking','user');
+                return view('list')->with($data);
             }
             
             
