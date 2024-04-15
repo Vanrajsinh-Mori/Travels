@@ -597,9 +597,10 @@
                         <div class="p-4">
                             <h4 class="fst-italic">Elsewhere</h4>
                             <ol class="list-unstyled">
-                                <li><img src="/img/git.png" height="35px" width="35px" class="img rounded" alt=""><a class="text-decoration-none" target="_blank" href="https://github.com/Vanrajsinh-Mori/Travels.git">GitHub</a></li>
-                                <li><img src="/img/x.png" height="35px" width="35px" class="img rounded" alt=""><a class="text-decoration-none" target="_blank" href="">Twitter (X)</a></li>
-                                <li><img src="/img/facbook.png" height="35px" width="35px" class="img rounded" alt=""><a class="text-decoration-none" target="_blank" href="">Facebook</a></li>
+
+                            <li><a href=https://github.com/ardacarofficial/links-website>GitHub</a></li>
+                            <li><a href="https://twitter.com/travelingbharat?lang=en">Twitter</a></li>
+                            <li><a href="https://www.facebook.com/profiletravelandtours/">Facebook</a></li>
                             </ol>
                         </div>
                     </div>
