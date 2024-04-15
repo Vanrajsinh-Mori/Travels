@@ -31,20 +31,18 @@ class hotelcontroller extends Controller
         //     }
             
             public function saveThread(Request $request, $id) {
-                // Validate the request data
                 $validatedData = $request->validate([
                     'title' => 'required|string',
                     'desc' => 'required|string',
                 ]);
             
-                // Create a new thread instance
                 $thread = new Thread();
                 $thread->thread_title = $validatedData['title'];
                 $thread->thread_desc = $validatedData['desc'];
-                $thread->thread_cat_id = $id; // Use the provided category ID
-                $thread->thread_user_id = Auth::id(); // Get authenticated user's ID
+                $thread->thread_cat_id = $id; 
+                $thread->thread_user_id = Auth::id(); 
             
-                // Save the thread
+            
                 $thread->save();
             
                 return redirect()->back()->with('success', 'Thread has been added successfully!');
@@ -62,24 +60,19 @@ class hotelcontroller extends Controller
         
         public function paid(Request $request, $id) {
                 $citys = citys::all();
-                // Retrieve all input data from the request
                 $requestData = $request->all();
-                // dd($requestData);
                 $hotels = hotels::where('hotel_id', $id)->first();
-                // Extract individual input values
                 $checkinDate = $requestData['checkin'] ?? null;
                 $checkoutDate = $requestData['checkout'] ?? null;
                 $hotelId = $id;
-                $userId = auth()->id(); // Assuming you are using Laravel's built-in authentication
+                $userId = auth()->id();
                 $name = $hotels->hotels_name;
                 $price = $requestData['totalPrice'] ?? null ;
                 $image = $hotels->hotels_image_path;
                 $status = "1";
                 
-                // Create a new instance of the Booked model
                 $booking = new Book();
                 
-                // Set the attributes of the booking
                 $booking->checkin_date = $checkinDate;
                 $booking->checkout_date = $checkoutDate;
                 $booking->hotel_id = $hotelId;
@@ -89,29 +82,36 @@ class hotelcontroller extends Controller
                 $booking->hotel_image_path = $image;
                 $booking->status = $status;
                 
-                // Save the booking details to the database
                 $booking->save();
                 
-                // Flash the success message
                 $booking = Book::all();
                 $alert = ['success' => 'Your hotel booked'];
                 $data = compact('alert', 'citys','booking');
-                // Storing the alert message in session flash
                 $request->session()->flash('alert', $alert);
                 
                
 
-                // Redirect the user to the index page or any other appropriate page
                 return view('index')->with($data);
             }
 
-            public function list(){
-                $citys = citys::all();
+            public function list(Request $request){
+                $citys = Citys::all();
                 $user = User::all();
-                $booking = Book::all();
-                $data = compact('citys', 'booking','user');
+            
+                $search = $request->input('search');
+            
+                $booking = Book::query()
+                            ->where('name', 'like', '%'.$search.'%')
+                            ->orWhere('price', 'like', '%'.$search.'%')
+                            ->orWhere('checkin_date', 'like', '%'.$search.'%')
+                            ->orWhere('checkout_date', 'like', '%'.$search.'%')
+                            ->get();
+            
+                $data = compact('citys', 'booking', 'user');
+            
                 return view('list')->with($data);
             }
+            
             
             
             
