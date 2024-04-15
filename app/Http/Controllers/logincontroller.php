@@ -59,7 +59,7 @@ class logincontroller extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'email',
             'password' => 'required'
-        ]);
+        ]); 
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = User::find(Auth::user()->id);
 

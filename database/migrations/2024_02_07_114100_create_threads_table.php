@@ -21,7 +21,7 @@ class CreateThreadsTable extends Migration
             $table->timestamps();
 
             // Define foreign key constraints
-            $table->foreign('hotel_id')->references('hotel_id')->on('categories');
+            $table->foreign('hotel_id')->references('hotel_id')->on('hotels');
             
         });
     }
