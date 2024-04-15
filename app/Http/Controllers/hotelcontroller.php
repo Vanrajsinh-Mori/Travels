@@ -93,11 +93,14 @@ class hotelcontroller extends Controller
                 $booking->save();
                 
                 // Flash the success message
+                $booking = Book::all();
                 $alert = ['success' => 'Your hotel booked'];
-                $data = compact('alert', 'citys');
+                $data = compact('alert', 'citys','booking');
                 // Storing the alert message in session flash
                 $request->session()->flash('alert', $alert);
                 
+               
+
                 // Redirect the user to the index page or any other appropriate page
                 return view('index')->with($data);
             }
