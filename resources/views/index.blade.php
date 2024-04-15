@@ -624,9 +624,9 @@
                         <div class="p-4">
                             <h4 class="fst-italic">Elsewhere</h4>
                             <ol class="list-unstyled">
-                                <li><a href="#">GitHub</a></li>
-                                <li><a href="#">Twitter</a></li>
-                                <li><a href="#">Facebook</a></li>
+                            <li><a href=https://github.com/ardacarofficial/links-website>GitHub</a></li>
+                            <li><a href="https://twitter.com/travelingbharat?lang=en">Twitter</a></li>
+                            <li><a href="https://www.facebook.com/profiletravelandtours/">Facebook</a></li>
                             </ol>
                         </div>
                     </div>
