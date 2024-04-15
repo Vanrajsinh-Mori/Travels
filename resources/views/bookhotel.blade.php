@@ -1,6 +1,10 @@
 @include('partials.header')
 @extends('partials.footer')
-
+@if (!Auth::check()) 
+    <script>
+         window.location.href = "/login";
+    </script>
+@else
 <style>
     body {
         position: relative;
@@ -405,3 +409,4 @@
       </div>
     </div>
 </div>
+@endif
