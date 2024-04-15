@@ -194,6 +194,11 @@
     }
 
     .container1::-webkit-scrollbar {
+        display: none;
+        /* Hide the scrollbar for WebKit browsers */
+    }
+
+    .container1::-webkit-scrollbar {
         width: 8px;
     }
 
@@ -228,11 +233,14 @@
 
     .modal1-header {
         position: sticky;
-        top: 0px;
-        z-index: 999;
+        border-bottom: 1px solid black;
+        margin-top: -21px;
+        top: -21px;
+        z-index: 1;
         background-color: #fff;
         width: 100%;
         padding: 20px;
+
     }
 
     .modal1-content {
@@ -367,7 +375,7 @@
         color: #0089ff;
     }
 
-    .nuu{
+    .nuu {
         display: none;
     }
 
@@ -712,15 +720,41 @@
 
         var hotelPrice = parseFloat("{{ $hotels->hotels_price }}");
 
-        var checkinDate = new Date(checkinInput.value);
+        var today = new Date();
+        var formattedToday = formatDate(today);
 
+        var checkinDate = new Date(checkinInput.value);
         var formattedCheckinDate = formatDate(checkinDate);
 
+        // Set minimum date to today
+        checkinInput.min = formattedToday;
+
+        // Set minimum checkout date to selected check-in date
         checkoutInput.min = formattedCheckinDate;
 
+        // Disable checkout input if check-in date is the same as checkout date
         checkoutInput.disabled = checkinInput.value === checkoutInput.value;
+
+        // Change background color if checkout input is disabled
         checkoutInput.style.backgroundColor = checkoutInput.disabled ? "#ffe6e6" : "";
     }
+
+    function formatDate(date) {
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        // Format day and month to have leading zeros if necessary
+        if (day < 10) {
+            day = '0' + day;
+        }
+        if (month < 10) {
+            month = '0' + month;
+        }
+
+        return year + '-' + month + '-' + day;
+    }
+
 
     function updatePrice() {
         var checkinInput = document.getElementById("checkin");
@@ -762,7 +796,7 @@
 
         $(document).ready(function() {
             let qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + totalPrice.toFixed(
-            2);
+                2);
             $(".qrimage").attr("src", qrUrl);
         })
 
