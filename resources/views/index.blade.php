@@ -33,7 +33,6 @@
     </div>
 @endif
 <script>
-    // Automatically close the alert after 2 seconds
     $(document).ready(function() {
         $(".alert").delay(2000).fadeOut("slow");
     });
@@ -133,50 +132,38 @@
             display: block !important;
         }
 
-        /* Custom styles for blog template */
 
         body {
             background-color: #ffffff;
-            /* White background */
             color: #000000;
-            /* Dark text color */
             font-family: Arial, sans-serif;
-            /* Default font family */
         }
 
-        /* Header */
         .blog-header-logo {
             font-size: 2rem;
             font-weight: bold;
         }
 
-        /* Navigation */
         .nav-scroller .nav-link {
             padding: 0.5rem 1rem;
         }
 
-        /* Featured post */
         .featured-post {
             background-color: #f8f9fa;
-            /* Light gray background */
             padding: 2rem;
             border-radius: 10px;
         }
 
         .featured-post h1 {
             color: #212529;
-            /* Dark gray text */
         }
 
         .featured-post p {
             color: #6c757d;
-            /* Gray text */
         }
 
-        /* Card */
         .blog-card {
             background-color: #fff;
-            /* White background */
             border-radius: 10px;
             overflow: hidden;
             transition: transform 0.3s ease-in-out;
@@ -189,44 +176,35 @@
 
         .blog-card .card-img-top {
             border-bottom: 1px solid #dee2e6;
-            /* Light gray border */
         }
 
         .blog-card .card-text {
             color: #6c757d;
-            /* Gray text */
         }
 
-        /* Pagination */
         .blog-pagination {
             justify-content: center;
         }
 
         .blog-pagination .page-link {
             color: #007bff;
-            /* Blue link color */
         }
 
         .blog-pagination .page-link:hover {
             color: #0056b3;
-            /* Darker blue on hover */
         }
 
-        /* Footer */
         .blog-footer {
             padding: 2rem 0;
             background-color: rgb(255, 255, 255, 0.6);
-            /* Light gray background */
         }
 
         .blog-footer a {
             color: #007bff;
-            /* Blue link color */
         }
 
         .blog-footer a:hover {
             color: #0056b3;
-            /* Darker blue on hover */
         }
 
         .bg-light1 {
@@ -249,9 +227,8 @@
     </style>
 
 
-    <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
-    <!-- Custom styles for this template -->
+ 
     <link href="blog.css" rel="stylesheet">
 </head>
 
@@ -300,12 +277,11 @@
                     <div class="col p-4 d-flex flex-column position-static" data-bs-toggle="modal"
                     data-bs-target="#locationmodal">
                         <strong class="d-inline-block mb-2 text-primary-emphasis">Booking</strong>
-                        <h3 class="mb-0">Curent Bookings</h3>
+                        <h3 class="mb-0">Lets Book Hotels</h3>
                         <div class="mb-1 text-body-secondary">Curent</div>
-                        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural
-                            lead-in to additional content.</p>
+                        <p class="card-text mb-auto">This is a List of Citys of all India to visit, travel and get pleasure everyday.</p>
                         <a class="icon-link gap-1 icon-link-hover stretched-link">
-                            View Booking
+                            View Citys
                             <svg class="bi">
                                 <use xlink:href="#chevron-right" />
                             </svg>
@@ -327,10 +303,9 @@
                         <strong class="d-inline-block mb-2 text-success-emphasis">Booked</strong>
                         <h3 class="mb-0">List Of booking</h3>
                         <div class="mb-1 text-body-secondary">Till Now</div>
-                        <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to
-                            additional content.</p>
+                        <p class="mb-auto">This is a list of hotels you have booked till now, we hope that you get pleasure from our servies.</p>
                         @php
-                            $user_id = Auth::id(); // Get the ID of the currently authenticated user
+                            $user_id = Auth::id(); 
                         @endphp
 
                         <a href="{{ $booking->where('user_id', $user_id)->isNotEmpty() ? route('list') : '#' }}"
@@ -342,9 +317,8 @@
                         <script>
                             $(document).ready(function() {
                                 $('#bookingLink').click(function(e) {
-                                    e.preventDefault(); // Prevent default link behavior
+                                    e.preventDefault(); 
                                     if ($(this).attr('href') === '#') {
-                                        // If there are no bookings, show the alert
                                         var alertDiv =
                                             '<div class="alert alert-danger alert-dismissible fade show position-fixed" ' +
                                             'style="top: 20px; right: 20px; z-index: 9999; width: 200px;">' +
@@ -355,7 +329,6 @@
                                             $(".alert").fadeOut("slow");
                                         }, 2000);
                                     } else {
-                                        // If there are bookings, proceed with the link
                                         window.location.href = $(this).attr('href');
                                     }
                                 });
@@ -587,7 +560,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+                                    <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none"
                                         href="/add/36">
                                         <img class="bd-placeholder-img" width="120px" height="96"
                                             src="/img/mh12.jpg" aria-hidden="true"
@@ -624,9 +597,9 @@
                         <div class="p-4">
                             <h4 class="fst-italic">Elsewhere</h4>
                             <ol class="list-unstyled">
-                                <li><a href="#">GitHub</a></li>
-                                <li><a href="#">Twitter</a></li>
-                                <li><a href="#">Facebook</a></li>
+                                <li><img src="/img/git.png" height="35px" width="35px" class="img rounded" alt=""><a class="text-decoration-none" target="_blank" href="https://github.com/Vanrajsinh-Mori/Travels.git">GitHub</a></li>
+                                <li><img src="/img/x.png" height="35px" width="35px" class="img rounded" alt=""><a class="text-decoration-none" target="_blank" href="">Twitter (X)</a></li>
+                                <li><img src="/img/facbook.png" height="35px" width="35px" class="img rounded" alt=""><a class="text-decoration-none" target="_blank" href="">Facebook</a></li>
                             </ol>
                         </div>
                     </div>
@@ -643,12 +616,11 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script>
-        // Wait for the document to be ready
         document.addEventListener("DOMContentLoaded", function() {
-            // Initialize the carousel
+     
             var myCarousel = new bootstrap.Carousel(document.querySelector('#carouselExampleIndicators'), {
-                interval: 5000, // Change slide every 5 seconds
-                wrap: true // Allow continuous sliding
+                interval: 5000, 
+                wrap: true 
             });
         });
     </script>

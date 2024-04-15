@@ -195,7 +195,6 @@
 
     .container1::-webkit-scrollbar {
         display: none;
-        /* Hide the scrollbar for WebKit browsers */
     }
 
     .container1::-webkit-scrollbar {
@@ -548,12 +547,12 @@
                                 <p class="float-end" id="taxAmount">₹{{ number_format($taxAmount, 2) }}</p>
                             </div>
                         </div>
+                      
                         <div class="box-4 p-2 rounded-bottom">
                             <p><strong>Total Amount to be paid</strong></p>
                             <p id="totalPrice" class="float-end">₹{{ number_format($totalPrice, 2) }}</p>
+                            <input type="number" class="nuu" id="totalPrice1" name="totalPrice" value="">
                         </div>
-                        <input type="number" class="nuu" name="totalPrice" value="{{ $totalPrice }}">
-
                         <div class="col-12 my-3">
                             <div class="form-check">
                                 <input class="form-check-input me-2" type="checkbox" id="gridCheck" required>
@@ -726,16 +725,12 @@
         var checkinDate = new Date(checkinInput.value);
         var formattedCheckinDate = formatDate(checkinDate);
 
-        // Set minimum date to today
         checkinInput.min = formattedToday;
 
-        // Set minimum checkout date to selected check-in date
         checkoutInput.min = formattedCheckinDate;
 
-        // Disable checkout input if check-in date is the same as checkout date
         checkoutInput.disabled = checkinInput.value === checkoutInput.value;
 
-        // Change background color if checkout input is disabled
         checkoutInput.style.backgroundColor = checkoutInput.disabled ? "#ffe6e6" : "";
     }
 
@@ -744,7 +739,6 @@
         var month = date.getMonth() + 1;
         var year = date.getFullYear();
 
-        // Format day and month to have leading zeros if necessary
         if (day < 10) {
             day = '0' + day;
         }
@@ -803,6 +797,7 @@
         document.getElementById("nightAmount").textContent = "₹" + nightAmount.toFixed(2);
         document.getElementById("taxAmount").textContent = "₹" + taxAmount.toFixed(2);
         document.getElementById("totalPrice").textContent = "₹" + totalPrice.toFixed(2);
+        document.getElementById("totalPrice1").value =  totalPrice.toFixed(2);
     }
 
     function formatDate(date) {
