@@ -38,3 +38,5 @@ Route::get('/threadlist/{id}',[hotelcontroller::class,'threadlist'])->name('thre
 Route::post('/thread/save/{id}', [hotelcontroller::class,'saveThread'])->name('save.thread');
 
 Route::post('/paid/{id}', [hotelcontroller::class, 'paid'])->name('paid');
+
+Route::get('/list', [hotelcontroller::class, 'list'])->name('list');
