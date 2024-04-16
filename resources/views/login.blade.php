@@ -1,5 +1,19 @@
 @include("partials.header")
 @extends("partials.footer")
+@if (session()->has('alert') && isset(session('alert')['erorr']))
+    <div class="alert alert-danger alert-dismissible fade show position-fixed"
+        style="top: 20px; right: 20px; z-index: 9999; width: 200px;">
+
+        {{ session('alert')['erorr'] }}
+    </div>
+    <script>
+        $(document).ready(function() {
+            $(".alert").animate({top: '-=50px', opacity: 0}, 2500, function(){
+                $(this).remove();
+            });
+        });
+    </script>
+@endif
 <style>
      body {
         position: relative;

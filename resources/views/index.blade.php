@@ -27,16 +27,23 @@
 </style>
 @if (session()->has('alert'))
     <div class="alert alert-success alert-dismissible fade show position-fixed"
-        style="top: 20px; right: 20px; z-index: 9999; width: 200px;">
+        style="top: 20px; right: 20px; z-index: 9999; width: 350px;">
 
         {{ session('alert')['success'] }}
     </div>
 @endif
 <script>
     $(document).ready(function() {
-        $(".alert").delay(2000).fadeOut("slow");
+        $(".alert").animate({
+            top: '-=50px',
+            opacity: 0
+        }, 2500, function() {
+            $(this).remove();
+        });
     });
 </script>
+
+
 
 
 <!doctype html>
@@ -228,7 +235,7 @@
 
 
     <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
- 
+
     <link href="blog.css" rel="stylesheet">
 </head>
 
@@ -275,11 +282,12 @@
                 <div
                     class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-light1">
                     <div class="col p-4 d-flex flex-column position-static" data-bs-toggle="modal"
-                    data-bs-target="#locationmodal">
+                        data-bs-target="#locationmodal">
                         <strong class="d-inline-block mb-2 text-primary-emphasis">Booking</strong>
                         <h3 class="mb-0">Lets Book Hotels</h3>
                         <div class="mb-1 text-body-secondary">Curent</div>
-                        <p class="card-text mb-auto">This is a List of Citys of all India to visit, travel and get pleasure everyday.</p>
+                        <p class="card-text mb-auto">This is a List of Citys of all India to visit, travel and get
+                            pleasure everyday.</p>
                         <a class="icon-link gap-1 icon-link-hover stretched-link">
                             View Citys
                             <svg class="bi">
@@ -303,12 +311,13 @@
                         <strong class="d-inline-block mb-2 text-success-emphasis">Booked</strong>
                         <h3 class="mb-0">List Of booking</h3>
                         <div class="mb-1 text-body-secondary">Till Now</div>
-                        <p class="mb-auto">This is a list of hotels you have booked till now, we hope that you get pleasure from our servies.</p>
+                        <p class="mb-auto">This is a list of hotels you have booked till now, we hope that you get
+                            pleasure from our servies.</p>
                         @php
-                            $user_id = Auth::id(); 
+                            $user_id = Auth::id();
                         @endphp
 
-                        <a href="{{ $booking->where('user_id', $user_id)->isNotEmpty() ? route('list') : '#' }}"
+                        <a href="{{ Auth::check() ? ($booking->where('user_id', $user_id)->isNotEmpty() ? route('list') : '#1') : '#' }}"
                             class="icon-link gap-1 icon-link-hover stretched-link" id="bookingLink">
                             View List Of Booking
                         
@@ -317,17 +326,32 @@
                         <script>
                             $(document).ready(function() {
                                 $('#bookingLink').click(function(e) {
-                                    e.preventDefault(); 
+                                    e.preventDefault();
                                     if ($(this).attr('href') === '#') {
                                         var alertDiv =
                                             '<div class="alert alert-danger alert-dismissible fade show position-fixed" ' +
                                             'style="top: 20px; right: 20px; z-index: 9999; width: 200px;">' +
-                                            'No Booking Found<button type="button" class="btn-close" data-bs-dismiss="alert" ' +
-                                            'aria-label="Close"></button></div>';
+                                            'First Login</div>';
                                         $('body').append(alertDiv);
-                                        setTimeout(function() {
-                                            $(".alert").fadeOut("slow");
-                                        }, 2000);
+                                        $(".alert").animate({
+                                            top: '-=50px',
+                                            opacity: 0
+                                        }, 2500, function() {
+                                            $(this).remove();
+                                        });
+                                    } else if ($(this).attr('href') === '#1') {
+                                        // If the user is logged in but has no bookings
+                                        var alertDiv =
+                                            '<div class="alert alert-danger alert-dismissible fade show position-fixed" ' +
+                                            'style="top: 20px; right: 20px; z-index: 9999; width: 200px;">' +
+                                            'No Booking Found</div>';
+                                        $('body').append(alertDiv);
+                                        $(".alert").animate({
+                                            top: '-=50px',
+                                            opacity: 0
+                                        }, 2500, function() {
+                                            $(this).remove();
+                                        });
                                     } else {
                                         window.location.href = $(this).attr('href');
                                     }
@@ -598,9 +622,9 @@
                             <h4 class="fst-italic">Elsewhere</h4>
                             <ol class="list-unstyled">
 
-                            <li><a href=https://github.com/ardacarofficial/links-website>GitHub</a></li>
-                            <li><a href="https://twitter.com/travelingbharat?lang=en">Twitter</a></li>
-                            <li><a href="https://www.facebook.com/profiletravelandtours/">Facebook</a></li>
+                                <li><a href=https://github.com/ardacarofficial/links-website>GitHub</a></li>
+                                <li><a href="https://twitter.com/travelingbharat?lang=en">Twitter</a></li>
+                                <li><a href="https://www.facebook.com/profiletravelandtours/">Facebook</a></li>
                             </ol>
                         </div>
                     </div>
@@ -618,10 +642,10 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-     
+
             var myCarousel = new bootstrap.Carousel(document.querySelector('#carouselExampleIndicators'), {
-                interval: 5000, 
-                wrap: true 
+                interval: 5000,
+                wrap: true
             });
         });
     </script>

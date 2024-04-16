@@ -87,6 +87,10 @@
     .noc{
         display: flex;
     }
+
+    .datee{
+        display: flex;
+    }
 </style>
 
 
@@ -120,10 +124,14 @@
                                 <p class="card-text ps-3"><span class="text-danger">Pending</span></p>
                             @endif
                         </div>
+                        <div class="datee">
                             <p class="card-text">Check-in date: <small
                                     class="text-body-secondary">{{ $book->checkin_date }}</small></p>
-                            <p class="card-text">Check-out date: <small
+                            <p class="card-text mx-4">Check-out date: <small
                                     class="text-body-secondary">{{ $book->checkout_date }}</small></p>
+                                </div>
+                            <p class="card-text">Booking date: <small
+                                    class="text-body-secondary">{{ $book->created_at->format('Y-m-d') }}</small></p>
                         </div>
                     </div>
                 </div>
