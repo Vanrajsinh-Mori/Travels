@@ -2,7 +2,8 @@
 @extends('partials.footer')
 @if (!Auth::check()) 
     <script>
-         window.location.href = "/login";
+        {!! session()->flash('alert', ['erorr' => 'Login First']) !!}
+        window.location.href = "/login";
     </script>
 @else
 <style>

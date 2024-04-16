@@ -91,7 +91,7 @@ class hotelcontroller extends Controller
                 
                
 
-                return view('index')->with($data);
+                return redirect('/')->with($data);
             }
 
             public function list(Request $request){

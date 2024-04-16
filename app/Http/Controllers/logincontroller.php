@@ -62,8 +62,9 @@ class logincontroller extends Controller
         ]); 
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = User::find(Auth::user()->id);
-
-            session()->flash('login', 'login successfull');
+            $alert = ['success' => 'Your Successfully Logedin'];
+        $request->session()->flash('alert', $alert);
+            // session()->flash('login', 'login successfull');
             return redirect('/');
         } else {
             return redirect()->back()
@@ -72,8 +73,10 @@ class logincontroller extends Controller
         }
     }
 
-    public function logout(){
+    public function logout(Request $request){
         Auth::logout();
+        $alert = ['success' => 'Your Successfully Logedout'];
+        $request->session()->flash('alert', $alert);
         return redirect('/');
     }
 

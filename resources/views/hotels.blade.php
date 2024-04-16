@@ -77,9 +77,11 @@
 </style>
 @if (!Auth::check()) 
     <script>
-         window.location.href = "/login";
+        {!! session()->flash('alert', ['erorr' => 'Login First']) !!}
+        window.location.href = "/login";
     </script>
 @else
+
 <div class="container">
     <div class="row">
         @foreach ($hotels as $hotel)

@@ -2,7 +2,8 @@
 @extends('partials.footer')
 @if (!Auth::check()) 
     <script>
-         window.location.href = "/login";
+        {!! session()->flash('alert', ['erorr' => 'Login First']) !!}
+        window.location.href = "/login";
     </script>
 @else
 <style>
@@ -345,6 +346,8 @@
 
     .hi1 {
         display: none;
+        padding-left: 29px;
+        text-decoration: none;
     }
 
     .hi2 {
@@ -353,6 +356,8 @@
 
     .hi3 {
         display: none;
+        padding-left: 29px;
+        text-decoration: none;
     }
 
     .qrimage {
@@ -374,7 +379,7 @@
         right: 0;
         bottom: 0;
         left: 0;
-        outline: 0;
+        outline: 0; 
         color: #0089ff;
     }
 
@@ -608,7 +613,7 @@
                                                     <li class="text-danger q1">First Select Dates</li>
                                                     <img src="" class="imm qrimage hi" width="150px"
                                                         alt="qr">
-                                                    <button class="view-button hi1">View</button>
+                                                    <a class="view-button hi1">View</a>
                                                 </div>
                                                 <p>Scan the QR code to make the payment.</p>
                                             </div>
@@ -623,7 +628,7 @@
                                                     <li class="text-danger q2">First Select Dates</li>
                                                     <img src="" class="imm qrimage hi2" width="150px"
                                                         alt="qr">
-                                                    <button class="view-button hi3">View</button>
+                                                    <a class="view-button hi3">View</a>
                                                 </div>
 
                                                 <p>This is a sample Google Pay option content.</p>
